@@ -1,5 +1,7 @@
 # AECPorto
 
+Este script serve para registar Log activities, para doublecheck é reproduzido tudo o Fluxo existente no website. Os logs são realizados aleatoriamente no intervalo de tempo de **45** a **210** segundos, sendo que este valor poderá ser editado no codigo.
+
 1. Adicionar ao browser uma extensão de gestão de cookies (exemplo CookieManager - Cookie Editor)
    
 ![Cookie Manager](https://github.com/JoseAbreu28/AECPorto/blob/efab98d873dcf8a80f46ffdb8eadb1cdb9dcc4d9/cookieManager.png)
