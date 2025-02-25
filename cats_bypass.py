@@ -2,7 +2,6 @@ import requests
 import time
 import random
 
-#Obtençao das cookies de sessão
 def get_initial_cookies():
     return {
         "cats_wbt_school": "aecporto",
@@ -14,11 +13,11 @@ def get_initial_cookies():
         "cats_wbt_session": input("Digite o valor de cats_wbt_session: "),
     }
 
-def send_request(auth_token, cookies):
+def send_request(auth_token, cookies,subject):
     url = "https://wbt.catsaviation.com/3/includes/log_activity"
     headers = {"X-Requested-With": "XMLHttpRequest"}
     cookies["X-AUTH-TOKEN"] = auth_token
-    data = {"sitearea": "guides", "subject": "148"}
+    data = {"sitearea": "guides", "subject": str(subject)}
     try:
         response = requests.post(url, headers=headers, cookies=cookies, data=data, verify=False)
         if "X-AUTH-TOKEN" in response.cookies:
@@ -51,21 +50,22 @@ def send_check_pagesubject_request(auth_token, cookies, docid, page):
 cookies = get_initial_cookies()
 
 # Token inicial
-auth_token = input("Adicione o token inicial (X-AUTH-TOKEN): ")
-#Verify on /docs/get the parameters version=80&page=10&startPage=0&endPage=398 (, MET=466 , AGK=475 ,AL=467 )
-docid = int(input("Adicione o código da disciplina (docid POF=476 ): "))
-page = int(input("Adicione a página inicial (recomendado começar por um valor baixo ex:10) : "))
-time_alive = int(input("Adicione o tempo de execução em minutos: ")) * 60
+auth_token = input("Digite o token inicial (X-AUTH-TOKEN): ")
+#verify on /docs/get the params version=80&page=10&startPage=0&endPage=398
+docid = int(input("Adicione o código da disciplina (docid POF=476, MET=466 , AGK=475 ,AL=467 , OP=464): "))
+page = int(input("Digite a página inicial: "))
+subject = int(input("Digite a subject (POF=148 , MET=145, OP=147): "))
+time_alive = int(input("Digite o tempo de execução em minutos: ")) * 60
 start_time = time.time()
 
 while time.time() - start_time < time_alive:
-    auth_token = send_request(auth_token, cookies)
+    auth_token = send_request(auth_token, cookies,subject)
     send_get_docs_request(auth_token, cookies, docid, page)
     send_check_pagesubject_request(auth_token, cookies, docid, page)
     page += 1
     remaining_time = time_alive - (time.time() - start_time)
-    delay = random.randint(45, 300)
-    print(f"A Aguardar {delay} segundos para o próximo request...")
+    delay = random.randint(45, 210)
+    print(f"Aguardando {delay} segundos para o próximo request...")
     time.sleep(delay)
 
-print("Programa terminado com sucesso")
+print("Tempo de execução finalizado.")
