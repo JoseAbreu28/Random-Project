@@ -13,17 +13,17 @@ def get_initial_cookies():
         "cats_wbt_session": input("Digite o valor de cats_wbt_session: "),
     }
 
-disciplines = {
-    "AGK": {"docid": 475, "version": 77, "endPage": 378, "subject": 142},
-    "PoF": {"docid": 476, "version": 80, "endPage": 398, "subject": 148},
-    "OP": {"docid": 464, "version": 66, "endPage": 66, "subject": 147},
-    "NAV": {"docid": 477, "version": 81, "endPage": 327, "subject": 146},
-    "MET": {"docid": 466, "version": 68, "endPage": 249, "subject": 145},
-    "HPL": {"docid": 463, "version": 96, "endPage": 143, "subject": 144},
-    "FPP": {"docid": 479, "version": 83, "endPage": 168, "subject": 143},
-    "AL": {"docid": 467, "version": 69, "endPage": 307, "subject": 141},
-    "COM": {"docid": 461, "version": 62, "endPage": 99, "subject": 149},
-}
+disciplines = [
+    {"name": "AGK", "docid": 475, "version": 77, "endPage": 378, "subject": 142},
+    {"name": "PoF", "docid": 476, "version": 80, "endPage": 398, "subject": 148},
+    {"name": "OP", "docid": 464, "version": 66, "endPage": 66, "subject": 147},
+    {"name": "NAV", "docid": 477, "version": 81, "endPage": 327, "subject": 146},
+    {"name": "MET", "docid": 466, "version": 68, "endPage": 249, "subject": 145},
+    {"name": "HPL", "docid": 463, "version": 96, "endPage": 143, "subject": 144},
+    {"name": "FPP", "docid": 479, "version": 83, "endPage": 168, "subject": 143},
+    {"name": "AL", "docid": 467, "version": 69, "endPage": 307, "subject": 141},
+    {"name": "COM", "docid": 461, "version": 62, "endPage": 99, "subject": 149},
+]
 
 def send_request(auth_token, cookies, subject):
     url = "https://wbt.catsaviation.com/3/includes/log_activity"
@@ -66,21 +66,22 @@ auth_token = input("Digite o token inicial (X-AUTH-TOKEN): ")
 
 # Menu de escolha de disciplina
 print("Escolha uma disciplina:")
-for key in disciplines:
-    print(f"{key}")
-discipline_choice = input("Escreva o código da disciplina: ").strip().upper()
+for index, discipline in enumerate(disciplines, start=1):
+    print(f"{index} - {discipline['name']}")
 
-if discipline_choice not in disciplines:
-    print("Disciplina inválida!")
+discipline_choice = input("Digite o número da disciplina escolhida: ").strip()
+
+if not discipline_choice.isdigit() or int(discipline_choice) not in range(1, 10):
+    print("Opção inválida!")
     exit()
 
-discipline_data = disciplines[discipline_choice]
+discipline_data = disciplines[int(discipline_choice) - 1]
 docid = discipline_data["docid"]
 version = discipline_data["version"]
 endPage = discipline_data["endPage"]
 subject = discipline_data["subject"]
 
-page = int(input("Adicionar página inicial (recomendavel adicionar uma página inferior ou igual a 10): "))
+page = int(input("Adicionar página inicial (recomendável adicionar uma página inferior ou igual a 10): "))
 time_alive = int(input("Adicione o tempo de execução em minutos: ")) * 60
 start_time = time.time()
 
