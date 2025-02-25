@@ -92,7 +92,7 @@ while time.time() - start_time < time_alive:
     page += 1
     remaining_time = time_alive - (time.time() - start_time)
     delay = random.randint(45, 300)
-    print(f"Aguardando {delay} segundos para o próximo request...")
+    print(f"A aguardar {delay} segundos para o próximo request...")
     time.sleep(delay)
 
 print("Tempo de execução finalizado.")
