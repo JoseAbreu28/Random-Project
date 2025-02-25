@@ -51,10 +51,10 @@ def send_check_pagesubject_request(auth_token, cookies, docid, page):
 cookies = get_initial_cookies()
 
 # Token inicial
-auth_token = input("Digite o token inicial (X-AUTH-TOKEN): ")
-docid = int(input("Digite o código da disciplina (docid): "))
-page = int(input("Digite a página inicial: "))
-time_alive = int(input("Digite o tempo de execução em minutos: ")) * 60
+auth_token = input("Adicione o token inicial (X-AUTH-TOKEN): ")
+docid = int(input("Adicione o código da disciplina (docid POF=476, MET=466 , AGK=475 ,AL=467 ): "))
+page = int(input("Adicione a página inicial (recomendado começar por um valor baixo ex:10) : "))
+time_alive = int(input("Adicione o tempo de execução em minutos: ")) * 60
 start_time = time.time()
 
 while time.time() - start_time < time_alive:
@@ -64,7 +64,7 @@ while time.time() - start_time < time_alive:
     page += 1
     remaining_time = time_alive - (time.time() - start_time)
     delay = random.randint(5, max(10, int(remaining_time / 2)))
-    print(f"Aguardando {delay} segundos para o próximo request...")
+    print(f"A Aguardar {delay} segundos para o próximo request...")
     time.sleep(delay)
 
-print("Tempo de execução finalizado.")
+print("Programa terminado com sucesso")
