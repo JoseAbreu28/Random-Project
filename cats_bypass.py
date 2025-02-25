@@ -68,7 +68,7 @@ auth_token = input("Digite o token inicial (X-AUTH-TOKEN): ")
 print("Escolha uma disciplina:")
 for key in disciplines:
     print(f"{key}")
-discipline_choice = input("Digite o código da disciplina: ").strip().upper()
+discipline_choice = input("Escreva o código da disciplina: ").strip().upper()
 
 if discipline_choice not in disciplines:
     print("Disciplina inválida!")
@@ -80,8 +80,8 @@ version = discipline_data["version"]
 endPage = discipline_data["endPage"]
 subject = discipline_data["subject"]
 
-page = int(input("Digite a página inicial: "))
-time_alive = int(input("Digite o tempo de execução em minutos: ")) * 60
+page = int(input("Adicionar página inicial (recomendavel adicionar uma página inferior ou igual a 10): "))
+time_alive = int(input("Adicione o tempo de execução em minutos: ")) * 60
 start_time = time.time()
 
 while time.time() - start_time < time_alive:
