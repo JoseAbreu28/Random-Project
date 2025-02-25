@@ -52,7 +52,8 @@ cookies = get_initial_cookies()
 
 # Token inicial
 auth_token = input("Adicione o token inicial (X-AUTH-TOKEN): ")
-docid = int(input("Adicione o código da disciplina (docid POF=476, MET=466 , AGK=475 ,AL=467 ): "))
+#Verify on /docs/get the parameters version=80&page=10&startPage=0&endPage=398 (, MET=466 , AGK=475 ,AL=467 )
+docid = int(input("Adicione o código da disciplina (docid POF=476 ): "))
 page = int(input("Adicione a página inicial (recomendado começar por um valor baixo ex:10) : "))
 time_alive = int(input("Adicione o tempo de execução em minutos: ")) * 60
 start_time = time.time()
