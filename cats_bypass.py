@@ -63,7 +63,7 @@ while time.time() - start_time < time_alive:
     send_check_pagesubject_request(auth_token, cookies, docid, page)
     page += 1
     remaining_time = time_alive - (time.time() - start_time)
-    delay = random.randint(5, max(10, int(remaining_time / 2)))
+    delay = random.randint(45, 300)
     print(f"A Aguardar {delay} segundos para o próximo request...")
     time.sleep(delay)
 
