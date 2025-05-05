@@ -1,4 +1,4 @@
-# AECPorto
+# AECPorto - CATS creating hours
 
 Este script serve para registar Log activities, para doublecheck é reproduzido tudo o Fluxo existente no website. Os logs são realizados aleatoriamente no intervalo de tempo de **45** a **210** segundos, sendo que este valor poderá ser editado no codigo.
 
